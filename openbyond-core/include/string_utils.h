@@ -23,7 +23,7 @@ THE SOFTWARE.
 */
 #ifndef HAVE_STRING_UTILS_H
 #define HAVE_STRING_UTILS_H
-#include "config.h"
+#include <config.h>
 #include <string>
 #include <vector>
 std::string string_format(const std::string fmt_str, ...);

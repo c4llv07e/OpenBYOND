@@ -3,14 +3,10 @@
 ###################################
 
 ## Project Setup
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.10)
 
 ## WHAT A CREATIVE NAME WOW
-set(MODULE_NAME ${PROJECT_NAME}-tools)
-
-set(${MODULE_NAME}_LINK_LIBS 
-	${OPENBYOND_CORE_LIBRARY}
-	)
+project(${CMAKE_PROJECT_NAME}-tools)
 
 ## Versioning shit
 set(VERSION_MAJOR 0)
@@ -24,6 +20,7 @@ set(VERSION_PATCH 1)
 
 # Add the include folder to the include path
 include_directories(
+        ${CMAKE_CURRENT_BINARY_DIR}/../openbyond-core/include # I am very sorry
 	${OPENBYOND_CORE_INCLUDE_DIR}
 	${TCLAP_INCLUDE_DIR}
 	)

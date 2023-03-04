@@ -2,10 +2,10 @@
 ## OpenBYOND - Compile Script
 ##########################################
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.10)
 
 ## WHAT A CREATIVE NAME WOW
-set(PROJECT_NAME openbyond)
+project(openbyond)
 
 ## Versioning shit
 set(VERSION_MAJOR 0)
@@ -41,9 +41,9 @@ endif()
 
 #
 # Every module has a CMakeLists.txt in it's root. 
-add_subdirectory (${CMAKE_SOURCE_DIR}/openbyond-core)
-include_directories(${CMAKE_SOURCE_DIR}/openbyond-core/include)
-add_subdirectory (${CMAKE_SOURCE_DIR}/openbyond-tools)
-#	${CMAKE_SOURCE_DIR}/openbyond-server
-#	${CMAKE_SOURCE_DIR}/openbyond-client
-#	${CMAKE_SOURCE_DIR}/openbyond-ide
+add_subdirectory(openbyond-core)
+include_directories(openbyond-core/include)
+add_subdirectory(openbyond-tools)
+add_subdirectory(openbyond-server)
+add_subdirectory(openbyond-client)
+add_subdirectory(openbyond-ide)

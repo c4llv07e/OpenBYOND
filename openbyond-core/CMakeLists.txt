@@ -3,10 +3,10 @@
 ###################################
 
 ## Project Setup
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.10)
 
 ## WHAT A CREATIVE NAME WOW
-set(MODULE_NAME ${PROJECT_NAME}-core)
+project(${CMAKE_PROJECT_NAME}-core)
 
 ## Versioning shit
 set(VERSION_MAJOR 0)
@@ -14,8 +14,6 @@ set(VERSION_MINOR 0)
 set(VERSION_PATCH 1)
 
 set(TARGET_NAME "openbyond-core")
-
-project(${MODULE_NAME})
 
 ## Configurations
 
@@ -53,8 +51,11 @@ configure_file(config.h.in ${CMAKE_CURRENT_BINARY_DIR}/include/config.h)
 include_directories(
 	${CMAKE_CURRENT_BINARY_DIR}
 	${CMAKE_CURRENT_BINARY_DIR}/grammar
-	${CMAKE_CURRENT_SOURCE_DIR}/include 
-	${FLEX_INCLUDE_DIR})
+	${CMAKE_CURRENT_BINARY_DIR}/include
+	${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${FLEX_INCLUDE_DIR})
+
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/grammar)
 
 # Set the source files, headers, and link libraries
 ##################
@@ -101,14 +102,14 @@ set(DMSCRIPT_INCLUDE
 SOURCE_GROUP("src\\script" FILES ${DMSCRIPT_INCLUDE})
 SOURCE_GROUP("src\\script" FILES ${DMSCRIPT_SOURCE})
 
-set(OPENBYOND_CORE_INCLUDE_DIR CACHE STRING ${CMAKE_CURRENT_BINARY_DIR}/include)
+set(OPENBYOND_CORE_INCLUDE_DIR "${CMAKE_CURRENT_BINARY_DIR}/include")
 
 set(OPENBYOND_CORE_INCLUDE CACHE STRING
 	${BASICS_INCLUDE}
 	${DMSCRIPT_INCLUDE}
 	)
 
-set(${MODULE_NAME}_LINK_LIBS 
+set(${PROJECT_NAME}_LINK_LIBS
 	#${FLEX_LIBRARIES}
 	)
 
@@ -119,4 +120,4 @@ add_library(${TARGET_NAME}
 	${DMSCRIPT_INCLUDE} ${DMSCRIPT_SOURCE}
 )
 set(OPENBYOND_CORE_LIBRARY CACHE STRING ${TARGET_NAME})
-target_link_libraries(${TARGET_NAME} ${${MODULE_NAME}_LINK_LIBS})
+target_link_libraries(${TARGET_NAME} ${${PROJECT_NAME}_LINK_LIBS})

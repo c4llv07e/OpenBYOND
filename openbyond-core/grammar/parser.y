@@ -28,8 +28,8 @@ THE SOFTWARE.
 %skeleton "lalr1.cc"
 %require "2.3"
 %defines
-%define "parser_class_name" "Parser"
-%define "namespace"         "DM"
+%define api.parser.class {Parser}
+%define api.namespace    {DM}
 
 %token AS 
 %token DECREMENT 
@@ -108,7 +108,7 @@ class Atom;
 %parse-param {class Driver& driver}
 %debug
 
-%error-verbose
+%define parse.error verbose
 
 %%
 script
@@ -283,7 +283,7 @@ procdefs
 	
 const_expression
 	: NUMBER
-	| STRING  { $$ = new DMString($1); }
+	| STRING /* { $$ = new DMString($1); } */
 	| '(' const_expression ')'
 	| const_expression '*' const_expression
 	| const_expression '/' const_expression

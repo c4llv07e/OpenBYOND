@@ -70,16 +70,7 @@ void Preprocessor::rewindStream(std::iostream &stream, int numchars) {
 	
 std::string Preprocessor::ParseFile(std::string filename) {
 	std::fstream fin(filename, std::fstream::in);
-	if (fin==NULL)
-	{
-		return "";
-	}
 	std::fstream fout(filename+".tmp", std::fstream::out);
-	if (fout==NULL)
-	{
-		fin.close();
-		return "";
-	}
 	
 	ParseStream(fin,fout,filename);
 	
@@ -270,9 +261,7 @@ void Preprocessor::consumeUntil(std::iostream &fin, std::iostream &fout, char en
 	char c;
 	while (fin >> std::noskipws >> c) {
 		if(c==endmarker) return;
-		if(fout!=NULL) {
-			fout << c;
-		}
+		fout << c;
 	}
 }
 void Preprocessor::consumeUntil(std::iostream &fin, std::iostream &fout, std::string endtoken) {
@@ -286,9 +275,7 @@ void Preprocessor::consumeUntil(std::iostream &fin, std::iostream &fout, std::st
 		token += c;
 		lastchar=c;
 		if(token==endtoken) return;
-		if(fout!=NULL) {
-			fout << c;
-		}
+		fout << c;
 	}
 }
 
