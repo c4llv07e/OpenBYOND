@@ -3,7 +3,8 @@
 /openbyond-core/grammar/parser.tab.h
 /openbyond-core/grammar/test.exe
 /openbyond-core/grammar/test.exe.stackdump
-/build
+/?build
+/bin
 /openbyond-core/bin/Debug/*.pdb
 
 CMakeFiles/
